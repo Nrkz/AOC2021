@@ -7,7 +7,6 @@ import ActiveObject.CapteurImpl;
 import java.util.List;
 
 public class DiffusionAtomique implements AlgoDiffusion{
-    @Override
     public void configure(Capteur capteur, List<Canal> canaux) {
 
     }

@@ -2,7 +2,6 @@ package ActiveObject;
 
 public interface Capteur {
 
-    public void tick();
+    Future<Integer> getValue();
 
-    public int getValue();
 }
