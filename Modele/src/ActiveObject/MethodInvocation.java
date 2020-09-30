@@ -1,4 +1,8 @@
 package ActiveObject;
 
-public interface MethodInvocation {
+import java.util.concurrent.Callable;
+
+public interface MethodInvocation extends Callable<Void> {
+
+
 }
