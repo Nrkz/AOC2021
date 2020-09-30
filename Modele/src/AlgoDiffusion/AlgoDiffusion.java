@@ -1,8 +1,15 @@
 package AlgoDiffusion;
 
+import ActiveObject.Canal;
+import ActiveObject.Capteur;
 import ActiveObject.CapteurImpl;
 
+import java.util.List;
+
 public interface AlgoDiffusion {
-    public void execute();
-    public void readValue(CapteurImpl c);
+
+    void configure(Capteur capteur, List<Canal> canaux);
+    void execute();
+    void readValue(CapteurImpl c);
+    List<Canal> getCanalList();
 }
