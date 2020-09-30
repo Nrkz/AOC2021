@@ -1,8 +1,17 @@
 package AlgoDiffusion;
 
+import ActiveObject.Canal;
+import ActiveObject.Capteur;
 import ActiveObject.CapteurImpl;
 
+import java.util.List;
+
 public class DiffusionEpoque implements AlgoDiffusion{
+    @Override
+    public void configure(Capteur capteur, List<Canal> canaux) {
+
+    }
+
     @Override
     public void execute() {
 
@@ -11,5 +20,10 @@ public class DiffusionEpoque implements AlgoDiffusion{
     @Override
     public void readValue(CapteurImpl c) {
 
+    }
+
+    @Override
+    public List<Canal> getCanalList() {
+        return null;
     }
 }
