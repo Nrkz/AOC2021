@@ -1,6 +1,6 @@
 package ActiveObject;
 
-public class CapteurImpl implements  Capteur{
+public class CapteurImpl implements Capteur{
 
     private int value;
 

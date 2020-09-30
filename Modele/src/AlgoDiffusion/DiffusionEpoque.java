@@ -1,6 +1,5 @@
 package AlgoDiffusion;
 
-import ActiveObject.Canal;
 import ActiveObject.Capteur;
 import ActiveObject.CapteurImpl;
 

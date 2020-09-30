@@ -1,8 +1,11 @@
 package ActiveObject;
 
-public class Afficheur {
+import java.util.concurrent.Future;
 
-    private int id;
+public class Afficheur<CapteurImpl> implements ObserverAsync {
+
+    private Capteur subject;
+    private Canal canal;
 
     public Afficheur(int id){
         this.id = id;
@@ -12,4 +15,9 @@ public class Afficheur {
 
     }
 
+
+    @Override
+    public Future<Void> update(ActiveObject.Capteur subject) {
+        return null;
+    }
 }
