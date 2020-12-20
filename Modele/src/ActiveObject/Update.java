@@ -4,6 +4,10 @@ import java.util.concurrent.Callable;
 
 public class Update implements Callable<Void> {
 
+	private Canal canal;
+	private Capteur capteur;
+	private Afficheur<Capteur> afficheur;
+	
     public Update(){
 
     }
