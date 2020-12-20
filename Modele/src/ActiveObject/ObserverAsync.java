@@ -1,9 +1,10 @@
 package ActiveObject;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public interface ObserverAsync {
 
-    Future<Void> update(Capteur subject);
+    Void update(Capteur subject) throws ExecutionException, InterruptedException;
 
 }

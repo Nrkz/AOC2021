@@ -14,6 +14,6 @@ public class Update implements Callable<Void> {
 
     @Override
     public Void call() throws Exception {
-        return null;
+        return this.afficheur.update(capteur);
     }
 }

@@ -1,11 +1,13 @@
 package ActiveObject;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class Afficheur<Capteur> implements ObserverAsync {
 	
 	private Capteur capteur;
 	private Canal canal;
+	private int value;
 
 	
     public Afficheur(Capteur capteur){
@@ -14,16 +16,14 @@ public class Afficheur<Capteur> implements ObserverAsync {
     public Canal getCanal() {
     	return canal;
     }
+
     public void setCanal(Canal canal) {
     	this.canal = canal;
     }
-    public void update(){
-
-    }
 
 	@Override
-	public Future<Void> update(ActiveObject.Capteur subject) {
-		// TODO Auto-generated method stub
+	public Void update(ActiveObject.Capteur subject) throws ExecutionException, InterruptedException {
+        this.value = this.canal.getValue().get();
 		return null;
 	}
 
