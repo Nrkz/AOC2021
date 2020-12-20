@@ -6,7 +6,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Canal implements ObserverAsync, CapteurAsync {
+public class Canal{
 
     private Integer canalValue;
     private Capteur capteur;
@@ -23,12 +23,10 @@ public class Canal implements ObserverAsync, CapteurAsync {
         return scheduler.schedule(new Update(),500, TimeUnit.MICROSECONDS);
     }
 
-    @Override
     public void attach(ObserverAsync observer) {
 
     }
 
-    @Override
     public void detach(ObserverAsync observer) {
 
     }
@@ -37,12 +35,10 @@ public class Canal implements ObserverAsync, CapteurAsync {
         return scheduler.schedule(new GetValue(),500, TimeUnit.MICROSECONDS);
     }
 
-    @Override
     public void tick() {
 
     }
 
-    @Override
     public Future<Void> update(Capteur subject) {
         return null;
     }
