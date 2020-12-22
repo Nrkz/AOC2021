@@ -7,14 +7,14 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Canal implements ObserverAsync, CapteurAsync {
+public class Canal implements CapteurAsync,ObserverAsync {
 
     private Capteur capteur;
     private Afficheur<Capteur> afficheur;
     private ScheduledExecutorService scheduler;
     private List<ObserverAsync> observers = new ArrayList<ObserverAsync>();
 
-    public Canal(Integer canalValue, CapteurImpl capteur){
+    public Canal(CapteurImpl capteur){
         this.capteur=capteur;
     }
 

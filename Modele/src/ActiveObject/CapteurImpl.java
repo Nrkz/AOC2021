@@ -12,6 +12,7 @@ public class CapteurImpl implements  Capteur{
     List<ObserverAsync> listobs;
     ArrayList<ObserverAsync> listAlgo;
 
+
     public CapteurImpl(AlgoDiffusion algo){
         value = 0;
         this.algo = algo;
@@ -29,5 +30,9 @@ public class CapteurImpl implements  Capteur{
     @Override
     public int getValue() {
         return value;
+    }
+
+    public boolean lock(){
+        return true;
     }
 }

@@ -23,4 +23,5 @@ public class Afficheur<Capteur> implements ObserverAsync {
         values.add(val);
         return null;
 	}
+
 }
