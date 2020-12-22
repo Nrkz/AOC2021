@@ -7,7 +7,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Canal implements ObserverAsync {
+public class Canal implements ObserverAsync, CapteurAsync {
 
     private Capteur capteur;
     private Afficheur<Capteur> afficheur;
