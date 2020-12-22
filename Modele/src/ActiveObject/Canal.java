@@ -2,44 +2,43 @@ package ActiveObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Canal{
+public class Canal implements ObserverAsync {
 
-    private Integer canalValue;
     private Capteur capteur;
     private Afficheur<Capteur> afficheur;
     private ScheduledExecutorService scheduler;
     private List<ObserverAsync> observers = new ArrayList<ObserverAsync>();
 
-    public Canal(Integer canalValue, Capteur capteur){
-        this.canalValue=canalValue;
-
+    public Canal(Integer canalValue, CapteurImpl capteur){
+        this.capteur=capteur;
     }
 
-    public Future<Void> update(){
-        return scheduler.schedule(new Update(),500, TimeUnit.MICROSECONDS);
-    }
-
-    public void attach(ObserverAsync observer) {
-
-    }
-
-    public void detach(ObserverAsync observer) {
-
-    }
 
     public Future<Integer> getValue(){
-        return scheduler.schedule(new GetValue(),500, TimeUnit.MICROSECONDS);
+        Future future = scheduler.schedule(new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                capteur.getValue();
+                return null;
+            }
+        }, 1000,TimeUnit.MILLISECONDS);
+        return future;
     }
 
-    public void tick() {
-
-    }
 
     public Future<Void> update(Capteur subject) {
-        return null;
+        Future future = scheduler.schedule(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                afficheur.update(capteur);
+                return null;
+            }
+        }, 1000,TimeUnit.MILLISECONDS);
+        return future;
     }
 }

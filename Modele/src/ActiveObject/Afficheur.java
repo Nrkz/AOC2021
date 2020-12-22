@@ -1,30 +1,26 @@
 package ActiveObject;
 
+import java.util.List;
 import java.util.concurrent.Future;
 
 public class Afficheur<Capteur> implements ObserverAsync {
 	
-	private Capteur capteur;
 	private Canal canal;
+	int val;
+	List<Integer> values;
+	String name;
 
 	
-    public Afficheur(Capteur capteur){
-        this.capteur = capteur;
-    }
-    public Canal getCanal() {
-    	return canal;
-    }
-    public void setCanal(Canal canal) {
-    	this.canal = canal;
-    }
-    public void update(){
-
+    public Afficheur(Canal canal){
+        this.canal = canal;
     }
 
 	@Override
-	public Future<Void> update(ActiveObject.Capteur subject) {
-		// TODO Auto-generated method stub
-		return null;
+	public Future<Void> update(ActiveObject.Capteur capteur) {
+        //devra faire appele au canal
+        val = capteur.getValue();
+        System.out.println(name+" value : "+val);
+        values.add(val);
+        return null;
 	}
-
 }
