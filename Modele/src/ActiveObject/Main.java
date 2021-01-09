@@ -1,11 +1,13 @@
 package ActiveObject;
 
+import java.util.concurrent.ExecutionException;
+
 import AlgoDiffusion.AlgoDiffusion;
 import AlgoDiffusion.DiffusionAtomique;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         AlgoDiffusion algo = new DiffusionAtomique();
         CapteurImpl capteur = new CapteurImpl(algo);

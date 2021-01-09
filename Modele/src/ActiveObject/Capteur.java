@@ -1,8 +1,10 @@
 package ActiveObject;
 
+import java.util.concurrent.ExecutionException;
+
 public interface Capteur {
 
-    public void tick();
+    void tick() throws InterruptedException, ExecutionException;;
 
-    public int getValue();
+    int getValue();
 }

@@ -4,27 +4,25 @@ import AlgoDiffusion.AlgoDiffusion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class CapteurImpl implements  Capteur{
 
     private int value;
-    AlgoDiffusion algo;
+    private AlgoDiffusion algoD;
     List<ObserverAsync> listobs;
     ArrayList<ObserverAsync> listAlgo;
 
 
     public CapteurImpl(AlgoDiffusion algo){
         value = 0;
-        this.algo = algo;
+        this.algoD = algo;
     }
 
-    @Override
-    public void tick() {
+    public void tick() throws ExecutionException, InterruptedException{
         //lock
         value++;
-        for(int i=0;i<listobs.size();i++){
-            listobs.get(i).update(this);
-        }
+        algoD.execute();
     }
 
     @Override
