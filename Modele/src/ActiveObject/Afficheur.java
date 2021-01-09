@@ -15,7 +15,7 @@ public class Afficheur{
         this.canal = canal;
     }
 
-	public Future<Void> update(Capteur capteur) throws ExecutionException, InterruptedException {
+	public Future<Void> update(Canal canal) throws ExecutionException, InterruptedException {
         Future<Integer> val = canal.getValue();
         System.out.println("Afficheur "+ id +" value : "+val);
         values.add(val.get());

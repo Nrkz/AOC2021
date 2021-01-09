@@ -31,11 +31,11 @@ public class Canal implements CapteurAsync,ObserverAsync {
     }
 
 
-    public Future<Void> update(Capteur subject) {
+    public Future<Void> update(Canal subject) {
         Future future = scheduler.schedule(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                afficheur.update(capteur);
+                afficheur.update(subject);
                 return null;
             }
         }, 1000,TimeUnit.MILLISECONDS);
