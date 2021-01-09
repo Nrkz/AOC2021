@@ -2,6 +2,7 @@ package ActiveObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -26,7 +27,7 @@ public class Canal implements CapteurAsync,ObserverAsync {
                 capteur.getValue();
                 return null;
             }
-        }, 1000,TimeUnit.MILLISECONDS);
+        }, randomDelay(),TimeUnit.MILLISECONDS);
         return future;
     }
 
@@ -38,7 +39,12 @@ public class Canal implements CapteurAsync,ObserverAsync {
                 afficheur.update(subject);
                 return null;
             }
-        }, 1000,TimeUnit.MILLISECONDS);
+        }, randomDelay(),TimeUnit.MILLISECONDS);
         return future;
     }
+
+    private int randomDelay() {
+        return new Random().nextInt(1000-500 +1) +1;
+    }
+
 }
