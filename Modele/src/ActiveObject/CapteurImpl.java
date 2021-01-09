@@ -4,6 +4,7 @@ import AlgoDiffusion.AlgoDiffusion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class CapteurImpl implements  Capteur{
 
@@ -19,7 +20,7 @@ public class CapteurImpl implements  Capteur{
     }
 
     @Override
-    public void tick() {
+    public void tick() throws ExecutionException, InterruptedException {
         //lock
         value++;
         for(int i=0;i<listobs.size();i++){

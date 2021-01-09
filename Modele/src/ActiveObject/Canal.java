@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class Canal implements CapteurAsync,ObserverAsync {
 
     private Capteur capteur;
-    private Afficheur<Capteur> afficheur;
+    private Afficheur afficheur;
     private ScheduledExecutorService scheduler;
     private List<ObserverAsync> observers = new ArrayList<ObserverAsync>();
 

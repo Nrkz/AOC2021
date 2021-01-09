@@ -1,26 +1,24 @@
 package ActiveObject;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-public class Afficheur<Capteur> implements ObserverAsync {
+public class Afficheur{
 	
 	private Canal canal;
-	int val;
 	List<Integer> values;
-	String name;
+	String id;
 
 	
     public Afficheur(Canal canal){
         this.canal = canal;
     }
 
-	@Override
-	public Future<Void> update(ActiveObject.Capteur capteur) {
-        //devra faire appele au canal
-        val = capteur.getValue();
-        System.out.println(name+" value : "+val);
-        values.add(val);
+	public Future<Void> update(Capteur capteur) throws ExecutionException, InterruptedException {
+        Future<Integer> val = canal.getValue();
+        System.out.println("Afficheur "+ id +" value : "+val);
+        values.add(val.get());
         return null;
 	}
 
