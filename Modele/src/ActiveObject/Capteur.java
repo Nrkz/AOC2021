@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutionException;
 
 public interface Capteur {
 
-    public void tick() throws ExecutionException, InterruptedException;
+    void tick() throws InterruptedException, ExecutionException;;
 
-    public int getValue();
+    int getValue();
 }
