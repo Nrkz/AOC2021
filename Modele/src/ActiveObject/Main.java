@@ -4,12 +4,13 @@ import java.util.concurrent.ExecutionException;
 
 import AlgoDiffusion.AlgoDiffusion;
 import AlgoDiffusion.DiffusionAtomique;
+import AlgoDiffusion.DiffusionEpoque;
 
 public class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        AlgoDiffusion algo = new DiffusionAtomique();
+        AlgoDiffusion algo = new DiffusionEpoque();
         CapteurImpl capteur = new CapteurImpl(algo);
         Canal c1 = new Canal(capteur);
         Canal c2 = new Canal(capteur);

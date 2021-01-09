@@ -9,7 +9,10 @@ import java.util.List;
 public interface AlgoDiffusion {
 
     void configure(Capteur capteur, List<Canal> canaux);
+
     void execute();
-    void readValue(CapteurImpl c);
+
+    int readValue();
+
     List<Canal> getCanalList();
 }
