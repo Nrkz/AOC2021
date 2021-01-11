@@ -35,6 +35,10 @@ public class Main {
 
         algo.configure(capteur,c);
         capteur.tick();
-
+        Thread.sleep(2000);
+        c1.getScheduler().shutdown();
+        c2.getScheduler().shutdown();
+        c3.getScheduler().shutdown();
+        c4.getScheduler().shutdown();
     }
 }
