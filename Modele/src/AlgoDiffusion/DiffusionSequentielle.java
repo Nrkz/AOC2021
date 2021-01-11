@@ -20,7 +20,7 @@ public class DiffusionSequentielle implements AlgoDiffusion{
     @Override
     public void execute() {
         for(Canal canal : canaux){
-            canal.update(canal);
+            canal.update();
         }
     }
 

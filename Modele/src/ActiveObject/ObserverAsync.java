@@ -5,6 +5,6 @@ import java.util.concurrent.Future;
 
 public interface ObserverAsync {
 
-    Future<Void> update(Canal subject) throws ExecutionException, InterruptedException;
+    Future<Void> update() throws ExecutionException, InterruptedException;
 
 }

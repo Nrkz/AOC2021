@@ -6,18 +6,17 @@ import java.util.concurrent.Future;
 
 public class Afficheur{
 	
-	private Canal canal;
 	List<Integer> values;
-	String id;
+	int id;
 
 	
-    public Afficheur(Canal canal){
-        this.canal = canal;
+    public Afficheur(int id){
+        this.id = id;
     }
 
-	public Future<Void> update(Canal canal) throws ExecutionException, InterruptedException {
+	public Void update(Canal canal) throws ExecutionException, InterruptedException {
         Future<Integer> val = canal.getValue();
-        System.out.println("Afficheur "+ id +" value : "+val);
+        System.out.println("Afficheur "+ id +" value : " + val.get());
         values.add(val.get());
         return null;
 	}
