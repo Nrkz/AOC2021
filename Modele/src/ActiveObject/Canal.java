@@ -15,8 +15,9 @@ public class Canal implements CapteurAsync,ObserverAsync {
     private ScheduledExecutorService scheduler;
     private List<ObserverAsync> observers = new ArrayList<ObserverAsync>();
 
-    public Canal(CapteurImpl capteur){
+    public Canal(CapteurImpl capteur, ScheduledExecutorService scheduler){
         this.capteur=capteur;
+        this.scheduler = scheduler;
     }
 
 
@@ -47,4 +48,7 @@ public class Canal implements CapteurAsync,ObserverAsync {
         return new Random().nextInt(1000-500 +1) +1;
     }
 
+    public ScheduledExecutorService getScheduler() {
+        return scheduler;
+    }
 }
