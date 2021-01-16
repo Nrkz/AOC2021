@@ -21,10 +21,10 @@ public class Main {
         Afficheur a2 = new Afficheur(2);
         Afficheur a3 = new Afficheur(3);
         Afficheur a4 = new Afficheur(4);
-        Canal c1 = new Canal(capteur,scheduler,a1);
-        Canal c2 = new Canal(capteur,scheduler,a2);
-        Canal c3 = new Canal(capteur,scheduler,a3);
-        Canal c4 = new Canal(capteur,scheduler,a4);
+        Canal c1 = new Canal(capteur,scheduler,a1,algo);
+        Canal c2 = new Canal(capteur,scheduler,a2,algo);
+        Canal c3 = new Canal(capteur,scheduler,a3,algo);
+        Canal c4 = new Canal(capteur,scheduler,a4,algo);
 
 
         List<Canal> c = new ArrayList<>();
@@ -35,7 +35,10 @@ public class Main {
 
         algo.configure(capteur,c);
         capteur.tick();
-        Thread.sleep(2000);
+        for(int i = 0; i <5; i++){
+            capteur.increment();
+            Thread.sleep(350);
+        }
         c1.getScheduler().shutdown();
         c2.getScheduler().shutdown();
         c3.getScheduler().shutdown();

@@ -5,6 +5,7 @@ import ActiveObject.Capteur;
 import ActiveObject.CapteurImpl;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public interface AlgoDiffusion {
 
@@ -12,7 +13,7 @@ public interface AlgoDiffusion {
 
     void execute();
 
-    int readValue();
+    int getValue(Canal canal) throws ExecutionException, InterruptedException;
 
     List<Canal> getCanalList();
 }

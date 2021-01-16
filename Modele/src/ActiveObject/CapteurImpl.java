@@ -20,14 +20,16 @@ public class CapteurImpl implements  Capteur{
     }
 
     public void tick() throws ExecutionException, InterruptedException{
-        //lock
-        value++;
         algoD.execute();
     }
 
     @Override
     public int getValue() {
         return value;
+    }
+
+    public void increment() {
+        value++;
     }
 
     public boolean lock(){

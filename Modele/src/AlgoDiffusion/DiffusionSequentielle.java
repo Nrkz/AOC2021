@@ -25,7 +25,7 @@ public class DiffusionSequentielle implements AlgoDiffusion{
     }
 
     @Override
-    public int readValue() {
+    public int getValue(Canal canal) {
         return capteur.getValue();
     }
 

@@ -1,5 +1,7 @@
 package ActiveObject;
 
+import AlgoDiffusion.AlgoDiffusion;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,46 +15,25 @@ public class Canal implements CapteurAsync,ObserverAsync {
     private CapteurImpl capteur;
     private Afficheur afficheur;
     private ScheduledExecutorService scheduler;
+    private AlgoDiffusion algo;
     private List<ObserverAsync> observers = new ArrayList<ObserverAsync>();
 
-    public Canal(CapteurImpl capteur, ScheduledExecutorService scheduler, Afficheur afficheur){
+    public Canal(CapteurImpl capteur, ScheduledExecutorService scheduler, Afficheur afficheur, AlgoDiffusion algo){
         this.capteur = capteur;
         this.scheduler = scheduler;
         this.afficheur = afficheur;
+        this.algo = algo;
     }
 
-
-    /*public Future<Integer> getValue(){
-        Future future = scheduler.schedule(new Callable<Integer>() {
-            @Override
-            public Integer call() throws Exception {
-                capteur.getValue();
-                return null;
-            }
-        }, randomDelay(),TimeUnit.MILLISECONDS);
-        return future;
-    }
-
-
-    public Future<Void> update(Canal subject) {
-        Future future = scheduler.schedule(new Callable<Void>() {
-            @Override
-            public Void call() throws Exception {
-                afficheur.update(subject);
-                return null;
-            }
-        }, randomDelay(),TimeUnit.MILLISECONDS);
-        return future;
-    }*/
 
     public Future<Void>  update() {
-        Callable<Void> updateLambda = () -> afficheur.update(this);
-        return scheduler.schedule(updateLambda, randomDelay(), TimeUnit.MILLISECONDS);
+        Callable<Void> update= () -> afficheur.update(this);
+        return scheduler.schedule(update, randomDelay(), TimeUnit.MILLISECONDS);
     }
 
     public Future<Integer> getValue() {
-        Callable<Integer> getValueLambda = () -> this.capteur.getValue();
-        return scheduler.schedule(getValueLambda, randomDelay(), TimeUnit.MILLISECONDS);
+        Callable<Integer> getValue = () -> this.algo.getValue(this);
+        return scheduler.schedule(getValue, randomDelay(), TimeUnit.MILLISECONDS);
     }
 
 
