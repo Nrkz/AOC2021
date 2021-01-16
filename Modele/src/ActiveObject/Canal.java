@@ -33,12 +33,13 @@ public class Canal implements CapteurAsync,ObserverAsync {
 
     public Future<Integer> getValue() {
         Callable<Integer> getValue = () -> this.algo.getValue(this);
-        return scheduler.schedule(getValue, randomDelay(), TimeUnit.MILLISECONDS);
+        int random = randomDelay();
+        return scheduler.schedule(getValue,random , TimeUnit.MILLISECONDS);
     }
 
 
     private int randomDelay() {
-        return new Random().nextInt(1000-500 +1) +1;
+        return (int) 375 + (int)(Math.random() * ((700 - 300) + 1));
     }
 
     public ScheduledExecutorService getScheduler() {

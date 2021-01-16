@@ -37,7 +37,7 @@ public class Main {
         capteur.tick();
         for(int i = 0; i <5; i++){
             capteur.increment();
-            Thread.sleep(350);
+            Thread.sleep(700);
         }
         c1.getScheduler().shutdown();
         c2.getScheduler().shutdown();
