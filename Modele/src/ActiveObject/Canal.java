@@ -4,7 +4,6 @@ import AlgoDiffusion.AlgoDiffusion;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -39,7 +38,7 @@ public class Canal implements CapteurAsync,ObserverAsync {
 
 
     private int randomDelay() {
-        return (int) 375 + (int)(Math.random() * ((700 - 300) + 1));
+        return (int) 375 + (int)(Math.random() * ((600 - 300) + 1));
     }
 
     public ScheduledExecutorService getScheduler() {

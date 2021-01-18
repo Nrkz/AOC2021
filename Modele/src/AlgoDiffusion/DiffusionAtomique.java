@@ -34,4 +34,5 @@ public class DiffusionAtomique implements AlgoDiffusion{
     public List<Canal> getCanalList() {
         return canaux;
     }
+
 }

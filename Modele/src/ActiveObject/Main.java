@@ -9,12 +9,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import AlgoDiffusion.AlgoDiffusion;
 import AlgoDiffusion.DiffusionAtomique;
 import AlgoDiffusion.DiffusionEpoque;
+import AlgoDiffusion.DiffusionSequentielle;
 
 public class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        AlgoDiffusion algo = new DiffusionEpoque();
+        AlgoDiffusion algo = new DiffusionSequentielle();
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         CapteurImpl capteur = new CapteurImpl(algo);
         Afficheur a1 = new Afficheur(1);
@@ -35,7 +36,7 @@ public class Main {
 
         algo.configure(capteur,c);
         capteur.tick();
-        for(int i = 0; i <5; i++){
+        for(int i = 0; i <10; i++){
             capteur.increment();
             Thread.sleep(700);
         }

@@ -32,7 +32,4 @@ public class CapteurImpl implements  Capteur{
         value++;
     }
 
-    public boolean lock(){
-        return true;
-    }
 }
