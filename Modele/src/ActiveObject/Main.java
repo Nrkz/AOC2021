@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        AlgoDiffusion algo = new DiffusionSequentielle();
+        AlgoDiffusion algo = new DiffusionAtomique();
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         CapteurImpl capteur = new CapteurImpl(algo);
         Afficheur a1 = new Afficheur(1);
@@ -35,9 +35,8 @@ public class Main {
         c.add(c4);
 
         algo.configure(capteur,c);
-        capteur.tick();
         for(int i = 0; i <10; i++){
-            capteur.increment();
+            capteur.tick();
             Thread.sleep(700);
         }
         c1.getScheduler().shutdown();

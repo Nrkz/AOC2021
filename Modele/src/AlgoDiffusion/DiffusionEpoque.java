@@ -28,7 +28,6 @@ public class DiffusionEpoque implements AlgoDiffusion{
 
     @Override
     public int getValue(Canal canal) throws ExecutionException, InterruptedException {
-        lock(canal);
         return capteur.getValue();
     }
 
@@ -37,7 +36,4 @@ public class DiffusionEpoque implements AlgoDiffusion{
         return canaux;
     }
 
-    public void lock(Canal canal){
-        canal.update();
-    }
 }

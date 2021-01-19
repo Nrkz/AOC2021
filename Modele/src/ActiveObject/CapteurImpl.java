@@ -10,8 +10,7 @@ public class CapteurImpl implements  Capteur{
 
     private int value;
     private AlgoDiffusion algoD;
-    List<ObserverAsync> listobs;
-    ArrayList<ObserverAsync> listAlgo;
+    public boolean verrou;
 
 
     public CapteurImpl(AlgoDiffusion algo){
@@ -20,16 +19,13 @@ public class CapteurImpl implements  Capteur{
     }
 
     public void tick() throws ExecutionException, InterruptedException{
+        value++;
         algoD.execute();
     }
 
     @Override
     public int getValue() {
         return value;
-    }
-
-    public void increment() {
-        value++;
     }
 
 }

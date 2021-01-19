@@ -6,43 +6,46 @@ import ActiveObject.CapteurImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 
 public class DiffusionSequentielle implements AlgoDiffusion{
     private Capteur capteur;
     private List<Canal> canaux = new ArrayList<>();
-    private List<Canal> liste = new ArrayList<>();
+    private List<Future> listeFuture = new ArrayList<>();
 
     @Override
     public void configure(Capteur capteur, List<Canal> canaux) {
         this.capteur = capteur;
-        this.canaux.addAll(canaux);
-        this.liste.addAll(canaux);
+        this.canaux = canaux;
     }
 
     @Override
     public void execute() {
-        for(Canal canal : canaux){
-            canal.update();
+        if(futuresDone()){
+            this.listeFuture = new ArrayList<>();
+            for (Canal canal : canaux){
+                listeFuture.add(canal.update());
+            }
         }
     }
 
     @Override
     public int getValue(Canal canal) throws InterruptedException {
-        lock(canal);
         return capteur.getValue();
     }
 
     @Override
     public List<Canal> getCanalList() {
-        return this.liste;
+        return this.canaux;
     }
 
-    public void lock(Canal canal) throws InterruptedException {
-        List<Canal> listeCanaux = getCanalList();
-        listeCanaux.remove(canal);
-        while (!listeCanaux.isEmpty()){Thread.sleep(1);}
-        Thread.sleep(5);
-        if(listeCanaux.isEmpty())liste.addAll(canaux);
-        canal.update();
+    public boolean futuresDone(){
+        boolean result = true;
+        for(Future future : listeFuture){
+            result &= future.isDone();
+        }
+        return result;
     }
+
+
 }
