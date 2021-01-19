@@ -10,7 +10,6 @@ public class CapteurImpl implements  Capteur{
 
     private int value;
     private AlgoDiffusion algoD;
-    public boolean verrou;
 
 
     public CapteurImpl(AlgoDiffusion algo){
