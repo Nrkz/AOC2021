@@ -7,4 +7,6 @@ public interface Capteur {
     void tick() throws InterruptedException, ExecutionException;;
 
     int getValue();
+
+    void verrou(boolean b);
 }

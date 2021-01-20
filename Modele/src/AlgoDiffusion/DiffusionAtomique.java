@@ -24,16 +24,17 @@ public class DiffusionAtomique implements AlgoDiffusion{
     @Override
     public void execute() {
             if (futuresDone()) {
+                capteur.verrou(true);
                 this.listeFuture = new ArrayList<>();
                 for (Canal canal : canaux) {
                     listeFuture.add(canal.update());
                 }
             }
-
     }
 
     @Override
     public int getValue(Canal canal) {
+        capteur.verrou(false);
         return capteur.getValue();
     }
 

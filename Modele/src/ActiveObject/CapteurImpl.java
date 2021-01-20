@@ -2,29 +2,39 @@ package ActiveObject;
 
 import AlgoDiffusion.AlgoDiffusion;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class CapteurImpl implements  Capteur{
 
     private int value;
     private AlgoDiffusion algoD;
+    public boolean lock;
 
 
     public CapteurImpl(AlgoDiffusion algo){
-        value = 0;
+        this.value = 0;
         this.algoD = algo;
+        this.lock = false;
     }
 
     public void tick() throws ExecutionException, InterruptedException{
-        value++;
-        algoD.execute();
+        while(!isLock()) {
+            value++;
+            algoD.execute();
+        }
     }
 
     @Override
     public int getValue() {
         return value;
+    }
+
+    public boolean isLock(){
+        return this.lock;
+    }
+
+    public void verrou(boolean bol){
+        this.lock = bol;
     }
 
 }
