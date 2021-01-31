@@ -21,4 +21,8 @@ public class Afficheur{
         return null;
 	}
 
+	public List<Integer> getValues(){
+        return this.values;
+    }
+
 }
