@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        AlgoDiffusion algo = new DiffusionAtomique();
+        AlgoDiffusion algo = new DiffusionEpoque();
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         CapteurImpl capteur = new CapteurImpl(algo);
         Afficheur a1 = new Afficheur(1);

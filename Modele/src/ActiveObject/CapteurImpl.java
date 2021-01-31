@@ -18,7 +18,7 @@ public class CapteurImpl implements  Capteur{
     }
 
     public void tick() throws ExecutionException, InterruptedException{
-        while(!isLock()) {
+        if(!isLock()) {
             value++;
             algoD.execute();
         }
