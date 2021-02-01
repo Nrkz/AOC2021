@@ -35,7 +35,7 @@ public class Main {
         c.add(c4);
 
         algo.configure(capteur,c);
-        for(int i = 0; i <10; i++){
+        for(int i = 0; i <5; i++){
             capteur.tick();
             Thread.sleep(700);
         }

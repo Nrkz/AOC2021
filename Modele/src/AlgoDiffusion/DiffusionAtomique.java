@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
+/**
+ * Algorithme de Diffusion Atomique
+ */
 public class DiffusionAtomique implements AlgoDiffusion{
 
     private Capteur capteur;
@@ -15,12 +18,20 @@ public class DiffusionAtomique implements AlgoDiffusion{
     private List<Future> listeFuture = new ArrayList<>();
 
 
+    /**
+     * Configure l'algorithme
+     * @param capteur
+     * @param canaux
+     */
     @Override
     public void configure(Capteur capteur, List<Canal> canaux) {
         this.capteur = capteur;
         this.canaux = canaux;
     }
 
+    /**
+     * Execute les update des Canaux
+     */
     @Override
     public void execute() {
             if (futuresDone()) {
@@ -32,17 +43,30 @@ public class DiffusionAtomique implements AlgoDiffusion{
             }
     }
 
+    /**
+     * Getter de value de Capteur
+     * @param canal
+     * @return Capteur value
+     */
     @Override
     public int getValue(Canal canal) {
         capteur.verrou(false);
         return capteur.getValue();
     }
 
+    /**
+     * Getter des canaux
+     * @return List<Canal>
+     */
     @Override
     public List<Canal> getCanalList() {
         return canaux;
     }
 
+    /**
+     * Vérifie si les Futures des Canaux ont été réalisé
+     * @return result
+     */
     public boolean futuresDone(){
         boolean result = true;
         for(Future future : listeFuture){
