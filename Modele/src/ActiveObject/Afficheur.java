@@ -16,25 +16,25 @@ public class Afficheur{
 
     /**
      * Constructeur de la Classe Afficheur
-     * @param id
+     * @param id id
      */
     public Afficheur(int id){
         this.id = id;
-        ArrayList<Integer> values = new ArrayList<>();
-        this.values = values;
+        //Values sert à comparer les valeurs pour les tests.
+        this.values = new ArrayList<>();
     }
 
     /**
      * Met à jour l'afficheur et fais appel à getValue() de canal
-     * @param canal
-     * @return
-     * @throws ExecutionException
-     * @throws InterruptedException
+     * @param canal canal
+     * @return Void
+     * @throws ExecutionException catch
+     * @throws InterruptedException catch
      */
 	public Void update(Canal canal) throws ExecutionException, InterruptedException {
-        Future<Integer> val = canal.getValue();
+        Future val = canal.getValue();
         Logger.getGlobal().info("Afficheur "+ id +" value : " + val.get());
-        values.add(val.get());
+        values.add((Integer) val.get());
         return null;
 	}
 

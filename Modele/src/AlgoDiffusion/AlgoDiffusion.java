@@ -3,17 +3,17 @@ package AlgoDiffusion;
 import ActiveObject.Canal;
 import ActiveObject.Capteur;
 import ActiveObject.CapteurImpl;
+import ActiveObject.ObserverAsync;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public interface AlgoDiffusion {
 
-    void configure(Capteur capteur, List<Canal> canaux);
+    void configure(Capteur capteur);
 
-    void execute();
+    void execute() throws ExecutionException, InterruptedException;
 
-    int getValue(Canal canal) throws ExecutionException, InterruptedException;
-
-    List<Canal> getCanalList();
+    Set<ObserverAsync> getCanalList();
 }

@@ -3,9 +3,11 @@ package AlgoDiffusion;
 import ActiveObject.Canal;
 import ActiveObject.Capteur;
 import ActiveObject.CapteurImpl;
+import ActiveObject.ObserverAsync;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -13,47 +15,34 @@ import java.util.concurrent.ExecutionException;
  */
 public class DiffusionEpoque implements AlgoDiffusion{
 
-    private Capteur capteur;
-    private List<Canal> canaux = new ArrayList<>();
+    private Set<ObserverAsync> canaux;
 
     /**
      * Configure l'algorithme
-     * @param capteur
-     * @param canaux
+     * @param capteur capteur
      */
     @Override
-    public void configure(Capteur capteur, List<Canal> canaux) {
-        this.capteur = capteur;
-        this.canaux = canaux;
+    public void configure(Capteur capteur) {
+        this.canaux = capteur.getObservers();
     }
 
     /**
      * Execute les update des Canaux
      */
     @Override
-    public void execute() {
-        for(Canal canal : canaux){
+    public void execute() throws ExecutionException, InterruptedException {
+        for(ObserverAsync canal : canaux){
             canal.update();
         }
     }
 
     /**
-     * Getter de value de Capteur
-     * @param canal
-     * @return Capteur value
-     */
-    @Override
-    public int getValue(Canal canal) throws ExecutionException, InterruptedException {
-        return capteur.getValue();
-    }
-
-    /**
      * Getter des canaux
-     * @return List<Canal>
+     * @return HashSet
      */
     @Override
-    public List<Canal> getCanalList() {
-        return canaux;
+    public Set<ObserverAsync> getCanalList() {
+        return this.canaux;
     }
 
 }

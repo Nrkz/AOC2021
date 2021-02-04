@@ -3,9 +3,12 @@ package AlgoDiffusion;
 import ActiveObject.Canal;
 import ActiveObject.Capteur;
 import ActiveObject.CapteurImpl;
+import ActiveObject.ObserverAsync;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 /**
@@ -13,49 +16,38 @@ import java.util.concurrent.Future;
  */
 public class DiffusionSequentielle implements AlgoDiffusion{
     private Capteur capteur;
-    private List<Canal> canaux = new ArrayList<>();
+    private Set<ObserverAsync> canaux;
     private List<Future> listeFuture = new ArrayList<>();
 
     /**
      * Configure l'algorithme
-     * @param capteur
-     * @param canaux
+     * @param capteur capteur
      */
     @Override
-    public void configure(Capteur capteur, List<Canal> canaux) {
+    public void configure(Capteur capteur) {
         this.capteur = capteur;
-        this.canaux = canaux;
+        this.canaux = capteur.getObservers();
     }
 
     /**
      * Execute les update des Canaux
      */
     @Override
-    public void execute() {
+    public void execute() throws ExecutionException, InterruptedException {
         if(futuresDone()){
             this.listeFuture = new ArrayList<>();
-            for (Canal canal : canaux){
+            for (ObserverAsync canal : canaux){
                 listeFuture.add(canal.update());
             }
         }
     }
 
     /**
-     * Getter de value de Capteur
-     * @param canal
-     * @return Capteur value
-     */
-    @Override
-    public int getValue(Canal canal) throws InterruptedException {
-        return capteur.getValue();
-    }
-
-    /**
      * Getter des canaux
-     * @return List<Canal>
+     * @return HashSet
      */
     @Override
-    public List<Canal> getCanalList() {
+    public Set<ObserverAsync> getCanalList() {
         return this.canaux;
     }
 

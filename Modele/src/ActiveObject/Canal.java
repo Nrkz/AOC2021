@@ -12,44 +12,40 @@ import java.util.concurrent.TimeUnit;
 /**
  * La classe Canal
  */
-public class Canal implements CapteurAsync,ObserverAsync {
+public class Canal<T> implements ObserverAsync {
 
     private CapteurImpl capteur;
     private Afficheur afficheur;
     private ScheduledExecutorService scheduler;
-    private AlgoDiffusion algo;
-    private List<ObserverAsync> observers = new ArrayList<ObserverAsync>();
 
     /**
      * Constructeur de Canal
-     * @param capteur
-     * @param scheduler
-     * @param afficheur
-     * @param algo
+     * @param capteur Capteur.
+     * @param scheduler Scheduler.
+     * @param afficheur Afficheur.
      */
-    public Canal(CapteurImpl capteur, ScheduledExecutorService scheduler, Afficheur afficheur, AlgoDiffusion algo){
+    public Canal(CapteurImpl capteur, ScheduledExecutorService scheduler, Afficheur afficheur){
         this.capteur = capteur;
         this.scheduler = scheduler;
         this.afficheur = afficheur;
-        this.algo = algo;
     }
 
 
     /**
      * Met à jour l'Afficheur en lançant l'exécution d'un ScheduledExecutorService
-     * @return Future<Void>
+     * @return Future
      */
-    public Future<Void>  update() {
+    public Future<Void> update() {
         Callable<Void> update= () -> afficheur.update(this);
         return scheduler.schedule(update, randomDelay(), TimeUnit.MILLISECONDS);
     }
 
     /**
      * Récupère la valeur du capeur en lançant l'exécution d'un ScheduledExecutorService
-     * @return Future<Integer>
+     * @return Future
      */
     public Future<Integer> getValue() {
-        Callable<Integer> getValue = () -> this.algo.getValue(this);
+        Callable<Integer> getValue = () -> capteur.getValue();
         int random = randomDelay();
         return scheduler.schedule(getValue,random , TimeUnit.MILLISECONDS);
     }

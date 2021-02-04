@@ -24,10 +24,10 @@ class DiffusionEpoqueTest {
         Afficheur a2 = new Afficheur(2);
         Afficheur a3 = new Afficheur(3);
         Afficheur a4 = new Afficheur(4);
-        Canal c1 = new Canal(capteur, scheduler, a1, algo);
-        Canal c2 = new Canal(capteur, scheduler, a2, algo);
-        Canal c3 = new Canal(capteur, scheduler, a3, algo);
-        Canal c4 = new Canal(capteur, scheduler, a4, algo);
+        Canal c1 = new Canal(capteur, scheduler, a1);
+        Canal c2 = new Canal(capteur, scheduler, a2);
+        Canal c3 = new Canal(capteur, scheduler, a3);
+        Canal c4 = new Canal(capteur, scheduler, a4);
 
 
         List<Canal> c = new ArrayList<>();
@@ -36,7 +36,7 @@ class DiffusionEpoqueTest {
         c.add(c3);
         c.add(c4);
 
-        algo.configure(capteur, c);
+        algo.configure(capteur);
         for (int i = 0; i < 10; i++) {
             capteur.tick();
             Thread.sleep(700);
